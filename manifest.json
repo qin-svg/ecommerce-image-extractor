@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "电商图片提取下载",
+  "version": "1.0.0",
+  "description": "在淘宝、京东、拼多多商家版商品详情页提取商品图片，勾选后批量下载为 PNG。",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "获取当前页商品图片",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.taobao.com/*",
+    "*://*.tmall.com/*",
+    "*://*.jd.com/*",
+    "*://*.pinduoduo.com/*",
+    "*://*.yangkeduo.com/*",
+    "*://*.alicdn.com/*",
+    "*://*.taobaocdn.com/*",
+    "*://*.tbcdn.cn/*",
+    "*://*.360buyimg.com/*",
+    "*://*.ddimg.cn/*",
+    "*://*.pddpic.com/*",
+    "*://*.yangkeduo.net/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.taobao.com/*",
+        "*://*.tmall.com/*",
+        "*://*.jd.com/*",
+        "*://*.pinduoduo.com/*",
+        "*://*.yangkeduo.com/*"
+      ],
+      "css": ["content.css"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ]
+}
